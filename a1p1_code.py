@@ -14,6 +14,11 @@ import morph
 import newALGS
 
 #####
+#####               Main
+#####
+
+
+#####
 #####               Read args file
 #####
 def ReadArgsFile(filePath, args_list):
@@ -26,9 +31,9 @@ def ReadArgsFile(filePath, args_list):
 
 
     for arg_line in args_lines:
-        arg_kv = arg_line.split(':')
-        arg_key = arg_kv [0]
-        arg_val = arg_kv [1]
+        arg_kv = arg_line.split(':', 1)
+        arg_key = arg_kv[0].strip()
+        arg_val = arg_kv[1].strip()
 
         for args_list_item in args_list:
             if(arg_key == args_list_item):

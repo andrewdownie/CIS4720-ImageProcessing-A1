@@ -1,4 +1,6 @@
-inputImage:fart
-outputImage:
+inputFolder:/mnt/c/Users/andre/OneDrive/School/CIS 4720 - Image Processing/images/
+outputFolder:/mnt/c/Users/andre/OneDrive/School/CIS 4720 - Image Processing/output images/
+inputImage:Castello Aragonese.jpg
+outputImage:fart.png
 algorithm:
 algorithmParameters:
