@@ -1,6 +1,7 @@
 #####
 #####               Imports
 #####
+"""
 import blurMetric
 import imageIO
 import imenh_lib
@@ -12,10 +13,7 @@ import imthr_lib
 import IPmetrics
 import morph
 import newALGS
-
-#####
-#####               Main
-#####
+"""
 
 
 #####
