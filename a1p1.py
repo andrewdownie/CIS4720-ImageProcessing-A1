@@ -12,10 +12,17 @@ sys.path.append(thisDir + '/prof')
 #from a1p1_code import *
 import a1p1_code
 from blurMetric import *
+
 from imageIO import *
 import imageIO
+
 from morph import *
 import morph
+
+from newALGS import *
+import newALGS
+
+
 
 """
 import imenh_lib
@@ -44,6 +51,7 @@ outputImage = args_dict['outputFolder'] + args_dict['outputImage']
 #####               Read the image
 #####
 imageCr, imageCg, imageCb = imageIO.imread_colour(inputImage)
+#bw_image = imageIO.imread_gray(inputImage)
 
 
 #####
@@ -51,21 +59,29 @@ imageCr, imageCg, imageCb = imageIO.imread_colour(inputImage)
 #####
 """
 print("\tMeasuring focus:")
+print("\tStarting red...")
 focusMeasureCr = blurMetric.GRADfocus(imageCr)
+print("\tStarting green...")
 focusMeasureCg = blurMetric.GRADfocus(imageCg)
+print("\tStarting b...")
 focusMeasureCb = blurMetric.GRADfocus(imageCb)
 print("Focus measure is: [" + str(focusMeasureCr) + ", " + str(focusMeasureCg) + ", " + str(focusMeasureCb) + "]")
 """
 
-"""
-print("Sharpening image:")
 print("\tStarting one...")
-newImgCr = morph.morph_sharp(imageCr)
+newImgCr = newALGS.nagao_matsuyama(imageCr)
 print("\tStarting two...")
-newImgCg = morph.morph_sharp(imageCg)
+newImgCg = newALGS.nagao_matsuyama(imageCg)
 print("\tStarting three...")
-newImgCb = morph.morph_sharp(imageCb)
-"""
+newImgCb = newALGS.nagao_matsuyama(imageCb)
+
+
+
+
+
+
+#print("shapening black white image")
+#new_bw_image = morph.morph_sharp(bw_image)
 
 
 
@@ -74,3 +90,4 @@ newImgCb = morph.morph_sharp(imageCb)
 #####
 print("saving image...")
 imageIO.imwrite_colour(outputImage, newImgCr, newImgCg, newImgCb)
+#imageIO.imwrite_gray(outputImage, new_bw_image)
