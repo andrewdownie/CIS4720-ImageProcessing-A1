@@ -9,7 +9,7 @@ import sys
 #####
 thisDir = sys.path[0]
 sys.path.append(thisDir + '/prof')
-#from a1p1_code import *
+from a1p1_code import *
 import a1p1_code
 from blurMetric import *
 
@@ -38,14 +38,8 @@ import newALGS
 #####
 #####               Program Setup
 #####
-args_list = ['inputFolder', 'outputFolder', 'inputImage', 'outputImage', 'algorithm', 'algorithmParameters']
-
-args_dict = a1p1_code.ReadArgsFile(thisDir + '/args', args_list)
-a1p1_code.PrintArgsDict(args_dict, True)
-
-inputImage = args_dict['inputFolder'] + args_dict['inputImage']
-outputImage = args_dict['outputFolder'] + args_dict['outputImage']
-
+inputImage, outputImage, algoList = ReadCLArgs()
+print('Input image is: ' + inputImage)
 
 #####
 #####               Read the image
