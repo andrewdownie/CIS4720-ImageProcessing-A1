@@ -36,23 +36,19 @@ imgCr, imgCg, imgCb = imageIO.imread_colour(inputImage)
 #####               Process the image
 #####
 if algo == 'grayWorld':
-    resultImgRGB = a1p1_code.grayWorld(imgCr, imgCg, imgCb)
+    imgCr, imgCg, imgCb = a1p1_code.grayWorld(imgCr, imgCg, imgCb)
 
 elif algo == 'maxWhite':
-    resultImgRGB = a1p1_code.maxWhite(imgCr, imgCg, imgCb)
+    a1p1_code.maxWhite(imgCr, imgCg, imgCb)
 
 elif algo == 'SDWGW':
-    resultImgRGB = a1p1_code.SDWGW(imgCr, imgCg, imgCb, 20)
+    a1p1_code.SDWGW(imgCr, imgCg, imgCb, 20)
 
 
 #####
 #####               Output the image
 #####
-print('\nunpacking image...')
-resultImgCr = resultImgRGB[:,:,0]
-resultImgCg = resultImgRGB[:,:,1]
-resultImgCb = resultImgRGB[:,:,2]
 
 print("\nsaving image...\n")
-imageIO.imwrite_colour(outputImage, resultImgCr, resultImgCg, resultImgCb)
+imageIO.imwrite_colour(outputImage, imgCr, imgCg, imgCb)
                         
