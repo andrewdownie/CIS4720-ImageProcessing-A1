@@ -3,22 +3,10 @@
 #####
 import sys
 
+import numpy
 
 from imrestore import *
 import imrestore
-"""
-import blurMetric
-import imageIO
-import imenh_lib
-import imfilter_lib
-#import img_qi      #Is this a matplotlib file or something
-import imhist_lib
-import imrestore
-import imthr_lib
-import IPmetrics
-import morph
-import newALGS
-"""
 
 #####
 #####               Read command line args
@@ -41,20 +29,17 @@ def ReadCLArgs():
 
 
 
-# img_filter         - Image filtering with a 3x3 kernel
-# img_filterMEAN     - Image smoothing with a 3x3 neighbourhood
-# img_filterGAUSSIAN - Image smoothing with Gaussian filter
-# img_sharpUSM       - Image sharpening with unsharp masking
-# img_sharpUSMgauss  - Image sharpening using Gaussian
-# img_sharpCUSM      - Image sharpening with Cubic UM
-
 #####
 #####               grayWorld      
 #####
 def grayWorld(imgCr, imgCg, imgCb):
-    print('this is grayworld')
 
+    print('<<Starting grayWorld')
+    imageRGB = numpy.array([imgCr, imgCg, imgCb])
+    result = imrestore.grayWorld(imageRGB)
+    print('Ending grayWorld>>')
 
+    return result 
 
 #####
 #####               maxWhite
