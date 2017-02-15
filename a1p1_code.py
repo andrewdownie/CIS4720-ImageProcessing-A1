@@ -8,6 +8,29 @@ import numpy
 from imrestore import *
 import imrestore
 
+
+#####
+#####               RGB to image
+#####
+def RGB_To_Image(imgCr, imgCg, imgCb):
+    rgbArray = numpy.zeros((imgCr.shape[0],imgCr.shape[1],3), 'uint8')
+    rgbArray[..., 0] = imgCr
+    rgbArray[..., 1] = imgCg
+    rgbArray[..., 2] = imgCb
+    return rgbArray
+
+
+#####
+#####               Image to RGB
+#####
+def Image_To_RGB(img):
+    resultRGB = numpy.asarray(img)
+    imgCr = resultRGB[:,:,0]
+    imgCg = resultRGB[:,:,1]
+    imgCb = resultRGB[:,:,2]
+    return imgCr, imgCg, imgCb
+
+
 #####
 #####               Read command line args
 #####
@@ -50,21 +73,13 @@ def grayWorld(imgCr, imgCg, imgCb):
 #####
 def maxWhite(imgCr, imgCg, imgCb):
     print('<<Starting maxWhite')
-    rgbArray = numpy.zeros((imgCr.shape[0],imgCr.shape[1],3), 'uint8')
-    rgbArray[..., 0] = imgCr
-    rgbArray[..., 1] = imgCg
-    rgbArray[..., 2] = imgCb
+    rgbArray = RGB_To_Image(imgCr, imgCg, imgCb)
     print(rgbArray.shape)
 
     result = imrestore.maxWhite(rgbArray)
-
-    resultRGB = numpy.asarray(result)
-    imgCr = resultRGB[:,:,0]
-    imgCg = resultRGB[:,:,1]
-    imgCb = resultRGB[:,:,2]
+    imgCr, imgCg, imgCb = Image_To_RGB(result)
     print('Ending maxWhite>>')
     
-    imageR = numpy.asarray(imgCr)
 
     return imgCr, imgCg, imgCb
 
