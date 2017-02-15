@@ -35,18 +35,11 @@ def Image_To_RGB(img):
 #####               Read command line args
 #####
 def ReadCLArgs():
-    inputImage = ''
-    outputImage = ''
-    algo = ''
-
-    for i in range(1, 4):
-        keyVal = sys.argv[i].split('=')
-        if(keyVal[0] == 'inputImage'):
-            inputImage = keyVal[1]
-        elif(keyVal[0] == 'outputImage'):
-            outputImage = keyVal[1]
-        elif(keyVal[0] == 'algo'):
-            algo = keyVal[1]
+    if(len(sys.argv) < 4):
+        print('not enough command line args, errors happen now:')
+    inputImage = sys.argv[1] 
+    outputImage = sys.argv[2] 
+    algo = sys.argv[3] 
 
     return inputImage, outputImage, algo
 

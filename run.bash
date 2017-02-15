@@ -1,6 +1,19 @@
 #!/bin/bash
-INPUT_IMAGE="inputImage=/mnt/c/Users/drew/OneDrive/School/CIS 4720 - Image Processing/images/part1/white_balance.jpg"
+rootPath="/mnt/c/Users/drew/OneDrive/School/CIS 4720 - Image Processing/images/"
+inPath="part1/"
+outPath=""
 
-python a1p1.py "$INPUT_IMAGE" \
-"outputImage=/mnt/c/Users/drew/OneDrive/School/CIS 4720 - Image Processing/images/meow test fixed.png" \
-"algo=SDWGW" \
+imgName="white_balance"
+inExt=".jpg"
+outExt=".jpg"
+
+grayWorld="grayWorld"
+maxWhite="maxWhite"
+SDWGW="SDWGE"
+UNDERSCORE="_"
+
+INPUT_FILE="$rootPath$inPath$imgName$inExt" 
+OUTPUT_FILE="$rootPath$outPath$imgName$UNDERSCORE" 
+
+ALGO="$SDWGW"
+python a1p1.py "$INPUT_FILE" "$OUTPUT_FILE$ALGO$outExt" "$ALGO"\
