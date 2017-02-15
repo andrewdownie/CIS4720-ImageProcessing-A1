@@ -1,9 +1,8 @@
 #####
 #####               Imports
 #####
-import sys
-
 import numpy
+import sys
 
 from imrestore import *
 import imrestore
@@ -37,6 +36,7 @@ def Image_To_RGB(img):
 def ReadCLArgs(thisDir):
     if(len(sys.argv) < 4):
         print('not enough command line args, errors happen now:')
+
     inputImage = thisDir + "/" + sys.argv[1] 
     outputImage = thisDir + "/" + sys.argv[2] 
     algo = sys.argv[3] 
@@ -50,13 +50,13 @@ def ReadCLArgs(thisDir):
 #####
 def grayWorld(imgCr, imgCg, imgCb):
 
-    print('<<Starting grayWorld')
+    print('-- Starting grayWorld')
 
     rgbArray = RGB_To_Image(imgCr, imgCg, imgCb)
     result = imrestore.grayWorld(rgbArray)
     imgCr, imgCg, imgCb = Image_To_RGB(result)
 
-    print('Ending grayWorld>>')
+    print('-- Ending grayWorld')
 
     return imgCr, imgCg, imgCb 
 
@@ -64,13 +64,13 @@ def grayWorld(imgCr, imgCg, imgCb):
 #####               maxWhite
 #####
 def maxWhite(imgCr, imgCg, imgCb):
-    print('<<Starting maxWhite')
+    print('-- Starting maxWhite')
 
     rgbArray = RGB_To_Image(imgCr, imgCg, imgCb)
     result = imrestore.maxWhite(rgbArray)
     imgCr, imgCg, imgCb = Image_To_RGB(result)
 
-    print('Ending maxWhite>>')
+    print('-- Ending maxWhite')
     
 
     return imgCr, imgCg, imgCb
@@ -80,10 +80,10 @@ def maxWhite(imgCr, imgCg, imgCb):
 #####               SDWGW
 #####
 def SDWGW(imgCr, imgCg, imgCb, nBlocks=20):
-    print('<<Starting SDWGW')
+    print('-- Starting SDWGW')
 
     rgbArray = RGB_To_Image(imgCr, imgCg, imgCb)
     result = imrestore.SDWGW(rgbArray)
     imgCr, imgCg, imgCb = Image_To_RGB(result)
 
-    print('Ending SDWGW>>')
+    print('-- Ending SDWGW')
