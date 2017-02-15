@@ -18,8 +18,7 @@ import imageIO
 #####
 #####               Get command line args 
 #####
-print(sys.argv)
-inputImage, outputImage, algo = ReadCLArgs()
+inputImage, outputImage, algo = ReadCLArgs(thisDir)
 
 print('\nCommand line arguments:')
 print('\tinputImage is: ' + inputImage)

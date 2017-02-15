@@ -34,11 +34,11 @@ def Image_To_RGB(img):
 #####
 #####               Read command line args
 #####
-def ReadCLArgs():
+def ReadCLArgs(thisDir):
     if(len(sys.argv) < 4):
         print('not enough command line args, errors happen now:')
-    inputImage = sys.argv[1] 
-    outputImage = sys.argv[2] 
+    inputImage = thisDir + "/" + sys.argv[1] 
+    outputImage = thisDir + "/" + sys.argv[2] 
     algo = sys.argv[3] 
 
     return inputImage, outputImage, algo

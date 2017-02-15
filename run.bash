@@ -1,5 +1,6 @@
 #!/bin/bash
-rootPath="/mnt/c/Users/drew/OneDrive/School/CIS 4720 - Image Processing/images/"
+#rootPath="/mnt/c/Users/drew/OneDrive/School/CIS 4720 - Image Processing/images/"
+rootPath="images/"
 inPath="part1/"
 outPath=""
 
@@ -10,10 +11,19 @@ outExt=".jpg"
 grayWorld="grayWorld"
 maxWhite="maxWhite"
 SDWGW="SDWGE"
-UNDERSCORE="_"
+underscore="_"
 
-INPUT_FILE="$rootPath$inPath$imgName$inExt" 
-OUTPUT_FILE="$rootPath$outPath$imgName$UNDERSCORE" 
+IN_FILE="$rootPath$inPath$imgName$inExt" 
+
 
 ALGO="$SDWGW"
-python a1p1.py "$INPUT_FILE" "$OUTPUT_FILE$ALGO$outExt" "$ALGO"\
+OUT_FILE="$rootPath$outPath$imgName$underscore$ALGO$outExt" 
+python a1p1.py "$IN_FILE" "$OUT_FILE" "$ALGO"\
+
+#ALGO="$grayWorld"
+#OUT_FILE="$rootPath$outPath$imgName$underscore$ALGO$outExt" 
+#python a1p1.py "$IN_FILE" "$OUT_FILE" "$ALGO"\
+
+#ALGO="$maxWhite"
+#OUT_FILE="$rootPath$outPath$imgName$underscore$ALGO$outExt" 
+#python a1p1.py "$IN_FILE" "$OUT_FILE" "$ALGO"\
