@@ -21,9 +21,9 @@ import imageIO
 inputImage, outputImage, algo = ReadCLArgs()
 
 print('\nCommand line arguments:')
-print('\tinputImage is:\t' + inputImage)
-print('\toutputImage is:\t' + outputImage)
-print('\talgo is:\t' + algo)
+print('\tinputImage is: ' + inputImage)
+print('\toutputImage is: ' + outputImage)
+print('\talgo is: ' + algo)
 print('')
 
 #####
@@ -39,7 +39,7 @@ if algo == 'grayWorld':
     imgCr, imgCg, imgCb = a1p1_code.grayWorld(imgCr, imgCg, imgCb)
 
 elif algo == 'maxWhite':
-    a1p1_code.maxWhite(imgCr, imgCg, imgCb)
+    imgCr, imgCg, imgCb = a1p1_code.maxWhite(imgCr, imgCg, imgCb)
 
 elif algo == 'SDWGW':
     a1p1_code.SDWGW(imgCr, imgCg, imgCb, 20)

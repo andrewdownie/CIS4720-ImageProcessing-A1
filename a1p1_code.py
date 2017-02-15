@@ -49,7 +49,24 @@ def grayWorld(imgCr, imgCg, imgCb):
 #####               maxWhite
 #####
 def maxWhite(imgCr, imgCg, imgCb):
-    print('this is maxWhite')
+    print('<<Starting maxWhite')
+    rgbArray = numpy.zeros((imgCr.shape[0],imgCr.shape[1],3), 'uint8')
+    rgbArray[..., 0] = imgCr
+    rgbArray[..., 1] = imgCg
+    rgbArray[..., 2] = imgCb
+    print(rgbArray.shape)
+
+    result = imrestore.maxWhite(rgbArray)
+
+    resultRGB = numpy.asarray(result)
+    imgCr = resultRGB[:,:,0]
+    imgCg = resultRGB[:,:,1]
+    imgCb = resultRGB[:,:,2]
+    print('Ending maxWhite>>')
+    
+    imageR = numpy.asarray(imgCr)
+
+    return imgCr, imgCg, imgCb
 
 
 #####

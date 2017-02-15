@@ -64,6 +64,7 @@ def maxWhite(imgRGB):
     img[:,:,1] = numpy.minimum((kg * imG),255)
     img[:,:,2] = numpy.minimum((kb * imB),255)
             
+    #return img.astype('uint8')
     return img.astype('uint8')
 
 
