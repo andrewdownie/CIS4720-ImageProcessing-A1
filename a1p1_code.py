@@ -58,12 +58,11 @@ def ReadCLArgs():
 def grayWorld(imgCr, imgCg, imgCb):
 
     print('<<Starting grayWorld')
-    imageRGB = numpy.array([imgCr, imgCg, imgCb])
-    result = imrestore.grayWorld(imageRGB)
-    resultRGB = numpy.asarray(result)
-    imgCr = resultRGB[:, :, 0]
-    imgCg = resultRGB[:, :, 1]
-    imgCb = resultRGB[:, :, 2]
+
+    rgbArray = RGB_To_Image(imgCr, imgCg, imgCb)
+    result = imrestore.grayWorld(rgbArray)
+    imgCr, imgCg, imgCb = Image_To_RGB(result)
+
     print('Ending grayWorld>>')
 
     return imgCr, imgCg, imgCb 
@@ -73,11 +72,11 @@ def grayWorld(imgCr, imgCg, imgCb):
 #####
 def maxWhite(imgCr, imgCg, imgCb):
     print('<<Starting maxWhite')
-    rgbArray = RGB_To_Image(imgCr, imgCg, imgCb)
-    print(rgbArray.shape)
 
+    rgbArray = RGB_To_Image(imgCr, imgCg, imgCb)
     result = imrestore.maxWhite(rgbArray)
     imgCr, imgCg, imgCb = Image_To_RGB(result)
+
     print('Ending maxWhite>>')
     
 
@@ -88,4 +87,10 @@ def maxWhite(imgCr, imgCg, imgCb):
 #####               SDWGW
 #####
 def SDWGW(imgCr, imgCg, imgCb, nBlocks=20):
-    print('this is SDWGW')
+    print('<<Starting SDWGW')
+
+    rgbArray = RGB_To_Image(imgCr, imgCg, imgCb)
+    result = imrestore.SDWGW(rgbArray)
+    imgCr, imgCg, imgCb = Image_To_RGB(result)
+
+    print('Ending SDWGW>>')
