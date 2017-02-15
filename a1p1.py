@@ -18,6 +18,7 @@ import imageIO
 #####
 #####               Get command line args 
 #####
+print(sys.argv)
 inputImage, outputImage, algo = ReadCLArgs()
 
 print('\nCommand line arguments:')
