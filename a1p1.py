@@ -32,8 +32,18 @@ print('')
 img_r, img_g, img_b = imageIO.imread_colour(inputImage)
 
 
-rgb2yuv(255, 0, 4)
+y, u, v = rgb2yuv(255, 0, 4)
 
+print("y is: " + str(y))
+print("u is: " + str(u))
+print("v is: " + str(v))
+
+r, g, b = yuv2rgb(y, u, v)
+
+  
+print("r is: " + str(r))
+print("g is: " + str(g))
+print("b is: " + str(b))
 
 #####
 #####               Process the image

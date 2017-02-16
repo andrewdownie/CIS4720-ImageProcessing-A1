@@ -48,11 +48,35 @@ def rgb2yuv(r, g, b):
     u = r * -0.168736 + g * -0.331264 + b * 0.5000000 + 128
     v = r * 0.500000 + g * - 0.418688 + b * -0.081312 + 128    
 
-    print("y is: " + str(y))
-    print("u is: " + str(u))
-    print("v is: " + str(v))
-
     return y, u, v
+
+
+#####
+#####               yuv2rgb
+#####
+def yuv2rgb(y, u, v):
+   r = y + 1.4075 * (v - 128)
+   g = y - 0.3455 * (u - 128) - (0.7169 * (v - 128))
+   b = y + 1.7790 * (u - 128) 
+
+
+   if(r < 0):
+       r = 0
+   elif(r > 255):
+       r = 255
+
+   if(g < 0):
+       g = 0
+   elif(g > 255):
+       g = 255
+
+   if(b < 0):
+       b = 0
+   elif(b > 255):
+       b = 255
+ 
+
+   return r, g, b
 
 #####
 #####               Read command line args
