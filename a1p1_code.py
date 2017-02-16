@@ -11,11 +11,11 @@ import morph
 #####
 #####               RGB to image
 #####
-def RGB_To_Image(imgCr, imgCg, imgCb):
-    rgbArray = numpy.zeros((imgCr.shape[0],imgCr.shape[1],3), 'uint8')
-    rgbArray[..., 0] = imgCr
-    rgbArray[..., 1] = imgCg
-    rgbArray[..., 2] = imgCb
+def RGB_To_Image(img_r, img_g, img_b):
+    rgbArray = numpy.zeros((img_r.shape[0],img_r.shape[1],3), 'uint8')
+    rgbArray[..., 0] = img_r
+    rgbArray[..., 1] = img_g
+    rgbArray[..., 2] = img_b
     return rgbArray
 
 
@@ -24,11 +24,35 @@ def RGB_To_Image(imgCr, imgCg, imgCb):
 #####
 def Image_To_RGB(img):
     resultRGB = numpy.asarray(img)
-    imgCr = resultRGB[:,:,0]
-    imgCg = resultRGB[:,:,1]
-    imgCb = resultRGB[:,:,2]
-    return imgCr, imgCg, imgCb
+    img_r = resultRGB[:,:,0]
+    img_g = resultRGB[:,:,1]
+    img_b = resultRGB[:,:,2]
+    return img_r, img_g, img_b
 
+#####
+#####               Image_rgb2yuv
+#####
+def Image_rgb2yuv(img_r, img_g, img_b):
+# Calls rgb2yuv for every pixel in a color image 
+    print('row: ' + str(len(img_r)) + ' cols: ' + str(len(img_r[0])))
+    for col in range(0..len(img_r[0])):
+        for row in range(0..len(img_r)):
+            return
+
+#####
+#####               rgb2yuv
+#####
+def rgb2yuv(r, g, b):
+# Ported from a js version, see rgb2yuv.js file for more details
+    y = r * 0.299000 + g * 0.587000 + b * 0.114000
+    u = r * -0.168736 + g * -0.331264 + b * 0.5000000 + 128
+    v = r * 0.500000 + g * - 0.418688 + b * -0.081312 + 128    
+
+    print("y is: " + str(y))
+    print("u is: " + str(u))
+    print("v is: " + str(v))
+
+    return y, u, v
 
 #####
 #####               Read command line args
@@ -48,14 +72,14 @@ def ReadCLArgs(thisDir):
 #####
 #####               morph_CE 
 #####
-def morph_CE(imgCr, imgCg, imgCb):
+def morph_CE(img_r, img_g, img_b):
     print('-- Starting morph_CE')
 
-    newCr = morph.morph_CE(imgCr)
+    newCr = morph.morph_CE(img_r)
     print('- Done red')
-    newCg = morph.morph_CE(imgCg)
+    newCg = morph.morph_CE(img_g)
     print('- Done green')
-    newCb = morph.morph_CE(imgCb)
+    newCb = morph.morph_CE(img_b)
     print('- Done blue')
 
     print('-- Ending morph_CE')
@@ -67,14 +91,14 @@ def morph_CE(imgCr, imgCg, imgCb):
 #####
 #####               morph_toggleCE 
 #####
-def morph_toggleCE(imgCr, imgCg, imgCb, nBlocks=20):
+def morph_toggleCE(img_r, img_g, img_b, nBlocks=20):
     print('-- Starting morph_toggleCE')
 
-    newCr = morph.morph_toggleCE(imgCr)
+    newCr = morph.morph_toggleCE(img_r)
     print('- Done red')
-    newCg = morph.morph_toggleCE(imgCg)
+    newCg = morph.morph_toggleCE(img_g)
     print('- Done green')
-    newCb = morph.morph_toggleCE(imgCb)
+    newCb = morph.morph_toggleCE(img_b)
     print('- Done blue')
 
     print('-- Ending morph_toggleCE')
@@ -85,13 +109,13 @@ def morph_toggleCE(imgCr, imgCg, imgCb, nBlocks=20):
 #####
 #####               DREW
 #####
-def DREW(imgCr, imgCg, imgCb):
+def DREW(img_r, img_g, img_b):
     print('-- Starting DREW')
-    imgRGB = RGB_To_Image(imgCr, imgCg, imgCb)
+    imgRGB = RGB_To_Image(img_r, img_g, img_b)
     
-    print('r is: ' + str(imgCr.mean()))
-    print('g is: ' + str(imgCg.mean()))
-    print('b is: ' + str(imgCb.mean()))
+    print('r is: ' + str(img_r.mean()))
+    print('g is: ' + str(img_g.mean()))
+    print('b is: ' + str(img_b.mean()))
 
 
     #idea: bring all 3 channels to an average of 127 mean value
@@ -100,12 +124,14 @@ def DREW(imgCr, imgCg, imgCb):
     #so if actual for red was 53, the ratio would be 127/53 = 2.396, which is what you multiply actual to get 127
     #you also want to take into account the actual value of each pixel, the further each pixel the larger the adjustment? or does that work?
     
-    redCo = 127.5 / imgCr.mean()
+    redCo = 127.5 / img_r.mean()
     print('redCo is: ' + str(redCo))
 
 
-    newImgCr = [pixel * redCo for pixel in imgCr]
+    newimg_r = [pixel * redCo for pixel in img_r]
 
     print('-- Ending DREW')
 
-    return newImgCr, imgCg, imgCb
+    return newimg_r, img_g, img_b
+
+

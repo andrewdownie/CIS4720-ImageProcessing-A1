@@ -29,20 +29,23 @@ print('')
 #####
 #####               Read the image
 #####
-imgCr, imgCg, imgCb = imageIO.imread_colour(inputImage)
+img_r, img_g, img_b = imageIO.imread_colour(inputImage)
+
+
+rgb2yuv(255, 0, 4)
 
 
 #####
 #####               Process the image
 #####
 if algo == 'morph_toggleCE':
-    newCr, newCg, newCb = a1p1_code.morph_toggleCE(imgCr, imgCg, imgCb)
+    new_r, new_g, new_b = a1p1_code.morph_toggleCE(img_r, img_g, img_b)
 
 elif algo == 'morph_CE':
-    newCr, newCg, newCb = a1p1_code.morph_CE(imgCr, imgCg, imgCb)
+    new_r, new_g, new_b = a1p1_code.morph_CE(img_r, img_g, img_b)
 
 elif algo == 'DREW':
-    newCr, newCg, newCb = a1p1_code.DREW(imgCr, imgCg, imgCb)
+    new_r, new_g, new_b = a1p1_code.DREW(img_r, img_g, img_b)
 
 else:
     print('No algo was selected, exiting program...')
@@ -54,5 +57,5 @@ else:
 #####
 
 print("\nsaving image...\n")
-imageIO.imwrite_colour(outputImage, newCr, newCg, newCb)
+imageIO.imwrite_colour(outputImage, new_r, new_g, new_b)
                         
