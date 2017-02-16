@@ -31,23 +31,6 @@ print('')
 #####
 img_r, img_g, img_b = imageIO.imread_colour(inputImage)
 
-y, u, v = rgb2yuv(0, 0, 0)
-
-"""
-print("y is: " + str(y))
-print("u is: " + str(u))
-print("v is: " + str(v))
-
-r, g, b = yuv2rgb(y, u, v)
-
-  
-print("r is: " + str(r))
-print("g is: " + str(g))
-print("b is: " + str(b))
-"""
-
-img_y, img_u, img_v = Image_rgb2yuv(img_r, img_g, img_b)
-new_r, new_g, new_b = Image_yuv2rgb(img_y, img_u, img_v)
 
 #####
 #####               Process the image
@@ -55,9 +38,12 @@ new_r, new_g, new_b = Image_yuv2rgb(img_y, img_u, img_v)
 if algo == 'morph_toggleCE':
     new_r, new_g, new_b = a1p1_code.morph_toggleCE(img_r, img_g, img_b)
 
+    
+    new_r, new_g, new_b = a1p1_code.morph_toggleCE(new_r, new_g, new_b)
+    new_r, new_g, new_b = a1p1_code.morph_toggleCE(new_r, new_g, new_b)
+
 elif algo == 'morph_CE':
-    print('morphce skipped...')
-    #new_r, new_g, new_b = a1p1_code.morph_CE(img_r, img_g, img_b)
+    new_r, new_g, new_b = a1p1_code.morph_CE(img_r, img_g, img_b)
 
 elif algo == 'DREW':
     new_r, new_g, new_b = a1p1_code.DREW(img_r, img_g, img_b)

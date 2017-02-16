@@ -1,7 +1,7 @@
 #####
 #####               Imports
 #####
-import numpy
+import numpy as np
 import math
 import sys
 
@@ -36,9 +36,9 @@ def Image_To_RGB(img):
 def Image_rgb2yuv(img_r, img_g, img_b):
 # Calls rgb2yuv for every pixel in a color image 
     print('Image_rgb2yuv: row: ' + str(len(img_r)) + ' cols: ' + str(len(img_r[0])))
-    img_y = numpy.zeros((img_r.shape[0], img_r.shape[1]))
-    img_u = numpy.zeros((img_r.shape[0], img_r.shape[1]))
-    img_v = numpy.zeros((img_r.shape[0], img_r.shape[1]))
+    img_y = numpy.zeros((img_r.shape[0], img_r.shape[1]), 'uint8')
+    img_u = numpy.zeros((img_r.shape[0], img_r.shape[1]), 'uint8')
+    img_v = numpy.zeros((img_r.shape[0], img_r.shape[1]), 'uint8')
 
     colCount = int(img_r.shape[0])
     rowCount = int(img_r.shape[1])
@@ -86,7 +86,7 @@ def rgb2yuv(r, g, b):
     u = r * -0.168736 + g * -0.331264 + b * 0.5000000 + 128
     v = r * 0.500000 + g * - 0.418688 + b * -0.081312 + 128    
 
-    return y, u, v
+    return np.uint8(y), np.uint8(u), np.uint8(v)
 
 
 #####
@@ -139,17 +139,14 @@ def ReadCLArgs(thisDir):
 def morph_CE(img_r, img_g, img_b):
     print('-- Starting morph_CE')
 
-    newCr = morph.morph_CE(img_r)
-    print('- Done red')
-    newCg = morph.morph_CE(img_g)
-    print('- Done green')
-    newCb = morph.morph_CE(img_b)
-    print('- Done blue')
+    img_y, img_u, img_v = Image_rgb2yuv(img_r, img_g, img_b)
+    new_y = morph.morph_CE(img_y)
+    new_r, new_g, new_b = Image_yuv2rgb(new_y, img_u, img_v)
 
     print('-- Ending morph_CE')
     
 
-    return newCr, newCg, newCb
+    return new_r, new_g, new_b
 
 
 #####
@@ -158,16 +155,13 @@ def morph_CE(img_r, img_g, img_b):
 def morph_toggleCE(img_r, img_g, img_b, nBlocks=20):
     print('-- Starting morph_toggleCE')
 
-    newCr = morph.morph_toggleCE(img_r)
-    print('- Done red')
-    newCg = morph.morph_toggleCE(img_g)
-    print('- Done green')
-    newCb = morph.morph_toggleCE(img_b)
-    print('- Done blue')
+    img_y, img_u, img_v = Image_rgb2yuv(img_r, img_g, img_b)
+    new_y = morph.morph_toggleCE(img_y)
+    new_r, new_g, new_b = Image_yuv2rgb(new_y, img_u, img_v)
 
     print('-- Ending morph_toggleCE')
 
-    return newCr, newCg, newCb
+    return new_r, new_g, new_b
 
 
 #####
