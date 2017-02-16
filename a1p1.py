@@ -7,7 +7,7 @@ import sys
 #####               Relative imports
 #####
 thisDir = sys.path[0]
-sys.path.append(thisDir + '/prof')
+sys.path.append(thisDir + '/lib')
 
 from a1p1_code import *
 import a1p1_code
@@ -35,14 +35,18 @@ imgCr, imgCg, imgCb = imageIO.imread_colour(inputImage)
 #####
 #####               Process the image
 #####
-if algo == 'grayWorld':
-    imgCr, imgCg, imgCb = a1p1_code.grayWorld(imgCr, imgCg, imgCb)
+if algo == 'morph_toggleCE':
+    newCr, newCg, newCb = a1p1_code.morph_toggleCE(imgCr, imgCg, imgCb)
 
-elif algo == 'maxWhite':
-    imgCr, imgCg, imgCb = a1p1_code.maxWhite(imgCr, imgCg, imgCb)
+elif algo == 'morph_CE':
+    newCr, newCg, newCb = a1p1_code.morph_CE(imgCr, imgCg, imgCb)
 
-elif algo == 'SDWGW':
-    a1p1_code.SDWGW(imgCr, imgCg, imgCb, 20)
+elif algo == 'DREW':
+    newCr, newCg, newCb = a1p1_code.DREW(imgCr, imgCg, imgCb)
+
+else:
+    print('No algo was selected, exiting program...')
+    sys.exit()
 
 
 #####
@@ -50,5 +54,5 @@ elif algo == 'SDWGW':
 #####
 
 print("\nsaving image...\n")
-imageIO.imwrite_colour(outputImage, imgCr, imgCg, imgCb)
+imageIO.imwrite_colour(outputImage, newCr, newCg, newCb)
                         

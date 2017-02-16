@@ -1,37 +1,33 @@
 #!/bin/bash
 #####
-#####               Input path
+#####               Image-name, location and extensions
 #####
-path="images/"
-
-#####
-#####               Image-name and image file extensions
-#####
-imgName="white_balance"
+imgName="lowcontrast"
+relPath="images/" #relative to the script being run
 inExt=".jpg"
 outExt=".jpg"
 
 #####
 #####               The available algorithms to run
 #####
-grayWorld="grayWorld"
-maxWhite="maxWhite"
-SDWGW="SDWGE"
+morph_toggleCE="morph_toggleCE"
+morph_CE="morph_CE"
+DREW="DREW"
 
-#So I don't need to learn how bash concatenation 'actually' works
-underscore="_"
+seperator=" - "
 
-IN_FILE="$path$imgName$inExt" 
+IN_FILE="$relPath$imgName$inExt" 
 
-
-ALGO="$SDWGW"
-OUT_FILE="$path$imgName$underscore$ALGO$outExt" 
+ALGO="$morph_CE"
+OUT_FILE="$relPath$imgName$seperator$ALGO$outExt" 
 python a1p1.py "$IN_FILE" "$OUT_FILE" "$ALGO"\
 
-ALGO="$grayWorld"
-OUT_FILE="$path$imgName$underscore$ALGO$outExt" 
+ALGO="$morph_toggleCE"
+OUT_FILE="$relPath$imgName$seperator$ALGO$outExt" 
 python a1p1.py "$IN_FILE" "$OUT_FILE" "$ALGO"\
 
-ALGO="$maxWhite"
-OUT_FILE="$path$imgName$underscore$ALGO$outExt" 
+
+exit #dont run my algo, it doesnt work yet
+ALGO="$DREW"
+OUT_FILE="$relPath$imgName$seperator$ALGO$outExt" 
 python a1p1.py "$IN_FILE" "$OUT_FILE" "$ALGO"\

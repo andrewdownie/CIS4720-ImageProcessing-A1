@@ -4,8 +4,8 @@
 import numpy
 import sys
 
-from imrestore import *
-import imrestore
+from morph import *
+import morph 
 
 
 #####
@@ -46,44 +46,66 @@ def ReadCLArgs(thisDir):
 
 
 #####
-#####               grayWorld      
+#####               morph_CE 
 #####
-def grayWorld(imgCr, imgCg, imgCb):
+def morph_CE(imgCr, imgCg, imgCb):
+    print('-- Starting morph_CE')
 
-    print('-- Starting grayWorld')
+    newCr = morph.morph_CE(imgCr)
+    print('- Done red')
+    newCg = morph.morph_CE(imgCg)
+    print('- Done green')
+    newCb = morph.morph_CE(imgCb)
+    print('- Done blue')
 
-    rgbArray = RGB_To_Image(imgCr, imgCg, imgCb)
-    result = imrestore.grayWorld(rgbArray)
-    imgCr, imgCg, imgCb = Image_To_RGB(result)
-
-    print('-- Ending grayWorld')
-
-    return imgCr, imgCg, imgCb 
-
-#####
-#####               maxWhite
-#####
-def maxWhite(imgCr, imgCg, imgCb):
-    print('-- Starting maxWhite')
-
-    rgbArray = RGB_To_Image(imgCr, imgCg, imgCb)
-    result = imrestore.maxWhite(rgbArray)
-    imgCr, imgCg, imgCb = Image_To_RGB(result)
-
-    print('-- Ending maxWhite')
+    print('-- Ending morph_CE')
     
 
-    return imgCr, imgCg, imgCb
+    return newCr, newCg, newCb
 
 
 #####
-#####               SDWGW
+#####               morph_toggleCE 
 #####
-def SDWGW(imgCr, imgCg, imgCb, nBlocks=20):
-    print('-- Starting SDWGW')
+def morph_toggleCE(imgCr, imgCg, imgCb, nBlocks=20):
+    print('-- Starting morph_toggleCE')
 
-    rgbArray = RGB_To_Image(imgCr, imgCg, imgCb)
-    result = imrestore.SDWGW(rgbArray)
-    imgCr, imgCg, imgCb = Image_To_RGB(result)
+    newCr = morph.morph_toggleCE(imgCr)
+    print('- Done red')
+    newCg = morph.morph_toggleCE(imgCg)
+    print('- Done green')
+    newCb = morph.morph_toggleCE(imgCb)
+    print('- Done blue')
 
-    print('-- Ending SDWGW')
+    print('-- Ending morph_toggleCE')
+
+    return newCr, newCg, newCb
+
+
+#####
+#####               DREW
+#####
+def DREW(imgCr, imgCg, imgCb):
+    print('-- Starting DREW')
+    imgRGB = RGB_To_Image(imgCr, imgCg, imgCb)
+    
+    print('r is: ' + str(imgCr.mean()))
+    print('g is: ' + str(imgCg.mean()))
+    print('b is: ' + str(imgCb.mean()))
+
+
+    #idea: bring all 3 channels to an average of 127 mean value
+    #HOW?
+    #figure out the ratio between desired (127) and actual
+    #so if actual for red was 53, the ratio would be 127/53 = 2.396, which is what you multiply actual to get 127
+    #you also want to take into account the actual value of each pixel, the further each pixel the larger the adjustment? or does that work?
+    
+    redCo = 127.5 / imgCr.mean()
+    print('redCo is: ' + str(redCo))
+
+
+    newImgCr = [pixel * redCo for pixel in imgCr]
+
+    print('-- Ending DREW')
+
+    return newImgCr, imgCg, imgCb
