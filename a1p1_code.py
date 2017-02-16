@@ -2,6 +2,7 @@
 #####               Imports
 #####
 import numpy
+import math
 import sys
 
 from morph import *
@@ -34,10 +35,47 @@ def Image_To_RGB(img):
 #####
 def Image_rgb2yuv(img_r, img_g, img_b):
 # Calls rgb2yuv for every pixel in a color image 
-    print('row: ' + str(len(img_r)) + ' cols: ' + str(len(img_r[0])))
-    for col in range(0..len(img_r[0])):
-        for row in range(0..len(img_r)):
-            return
+    print('Image_rgb2yuv: row: ' + str(len(img_r)) + ' cols: ' + str(len(img_r[0])))
+    img_y = numpy.zeros((img_r.shape[0], img_r.shape[1]))
+    img_u = numpy.zeros((img_r.shape[0], img_r.shape[1]))
+    img_v = numpy.zeros((img_r.shape[0], img_r.shape[1]))
+
+    colCount = int(img_r.shape[0])
+    rowCount = int(img_r.shape[1])
+
+    for col in range(colCount):
+        for row in range(rowCount):
+            y, u, v = rgb2yuv(img_r[col, row], img_g[col, row], img_b[col, row]) 
+            img_y[col, row] = math.floor(y)
+            img_u[col, row] = math.floor(u)
+            img_v[col, row] = math.floor(v)
+             
+
+    return img_y, img_u, img_v
+
+
+#####
+#####               Image_yuv2rgb
+#####
+def Image_yuv2rgb(img_y, img_u, img_v):
+# Calls yuv2rgb for every pixel in a color image 
+    print('Image_yuv2rgb: row: ' + str(len(img_y)) + ' cols: ' + str(len(img_y[0])))
+    img_r = numpy.zeros((img_y.shape[0], img_y.shape[1]))
+    img_g = numpy.zeros((img_y.shape[0], img_y.shape[1]))
+    img_b = numpy.zeros((img_y.shape[0], img_y.shape[1]))
+
+    colCount = int(img_y.shape[0])
+    rowCount = int(img_y.shape[1])
+
+    for col in range(colCount):
+        for row in range(rowCount):
+            r, g, b = yuv2rgb(img_y[col, row], img_u[col, row], img_v[col, row]) 
+            img_r[col, row] = r
+            img_g[col, row] = g
+            img_b[col, row] = b
+             
+
+    return img_r, img_g, img_b
 
 #####
 #####               rgb2yuv
@@ -74,6 +112,8 @@ def yuv2rgb(y, u, v):
        b = 0
    elif(b > 255):
        b = 255
+
+
  
 
    return r, g, b

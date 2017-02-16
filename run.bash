@@ -29,7 +29,6 @@ OUT_FILE="$relPath$imgName$seperator$ALGO$outExt"
 python a1p1.py "$IN_FILE" "$OUT_FILE" "$ALGO"\
 
 
-exit #dont run my algo, it doesnt work yet
 
 ALGO="$DREW"
 OUT_FILE="$relPath$imgName$seperator$ALGO$outExt" 
