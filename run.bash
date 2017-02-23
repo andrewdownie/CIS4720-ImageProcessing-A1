@@ -18,18 +18,20 @@ seperator=" - "
 
 IN_FILE="$relPath$imgName$inExt" 
 
-ALGO="$morph_CE"
-OUT_FILE="$relPath$imgName$seperator$ALGO$outExt" 
-python a1p1.py "$IN_FILE" "$OUT_FILE" "$ALGO"\
+#####
+#####               FUNCTION: RunAlgo, takes the algorithm you want to run as parameter one 
+#####
+RunAlgo(){
+    OUT_FILE="$relPath$imgName$seperator$1$outExt" 
+    python a1p1.py "$IN_FILE" "$OUT_FILE" "$1"
+}
 
+#####
+#####               Run the algorithms
+#####
+RunAlgo "$morph_CE"
 exit
 
-ALGO="$morph_toggleCE"
-OUT_FILE="$relPath$imgName$seperator$ALGO$outExt" 
-python a1p1.py "$IN_FILE" "$OUT_FILE" "$ALGO"\
+RunAlgo "$morph_toggleCE"
 
-
-
-ALGO="$DREW"
-OUT_FILE="$relPath$imgName$seperator$ALGO$outExt" 
-python a1p1.py "$IN_FILE" "$OUT_FILE" "$ALGO"\
+RunAlgo "$DREW"
