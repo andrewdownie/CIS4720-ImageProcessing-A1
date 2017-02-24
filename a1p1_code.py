@@ -13,7 +13,7 @@ import morph
 #####               RGB to image
 #####
 def RGB_To_Image(img_r, img_g, img_b):
-    rgbArray = numpy.zeros((img_r.shape[0],img_r.shape[1],3), 'uint8')
+    rgbArray = numpy.zeros((img_r.shape[0],img_r.shape[1],3), 'uint16')
     rgbArray[..., 0] = img_r
     rgbArray[..., 1] = img_g
     rgbArray[..., 2] = img_b
@@ -36,9 +36,9 @@ def Image_To_RGB(img):
 def Image_rgb2yuv(img_r, img_g, img_b):
 # Calls rgb2yuv for every pixel in a color image 
     print('Image_rgb2yuv: row: ' + str(len(img_r)) + ' cols: ' + str(len(img_r[0])))
-    img_y = numpy.zeros((img_r.shape[0], img_r.shape[1]), 'uint8')
-    img_u = numpy.zeros((img_r.shape[0], img_r.shape[1]), 'uint8')
-    img_v = numpy.zeros((img_r.shape[0], img_r.shape[1]), 'uint8')
+    img_y = numpy.zeros((img_r.shape[0], img_r.shape[1]), 'uint16')
+    img_u = numpy.zeros((img_r.shape[0], img_r.shape[1]), 'uint16')
+    img_v = numpy.zeros((img_r.shape[0], img_r.shape[1]), 'uint16')
 
     colCount = int(img_r.shape[0])
     rowCount = int(img_r.shape[1])
@@ -86,7 +86,7 @@ def rgb2yuv(r, g, b):
     u = r * -0.168736 + g * -0.331264 + b * 0.5000000 + 128
     v = r * 0.500000 + g * - 0.418688 + b * -0.081312 + 128    
 
-    return np.uint8(y), np.uint8(u), np.uint8(v)
+    return np.uint16(y), np.uint16(u), np.uint16(v)
 
 
 #####

@@ -89,10 +89,12 @@ def morph_CE(im):
 
     for i in range(0,im.shape[0]):
         for j in range(0,im.shape[1]):
-            newPixel = im[i][j] + THo[i][j] - THc[i][j]
+            newPixel = (im[i][j]).astype(numpy.int64)
+            newPixel += (THo[i][j]).astype(numpy.int64)
+            newPixel -= (THc[i][j]).astype(numpy.int64)
             if newPixel > 255:
             	img[i][j] = 255
             else:
-            	img[i][j] = newPixel
+            	img[i][j] = newPixel 
   
     return img
