@@ -169,27 +169,58 @@ def morph_toggleCE(img_r, img_g, img_b, nBlocks=20):
 #####
 def DREW(img_r, img_g, img_b):
     print('-- Starting DREW')
-    imgRGB = RGB_To_Image(img_r, img_g, img_b)
     
-    print('r is: ' + str(img_r.mean()))
-    print('g is: ' + str(img_g.mean()))
-    print('b is: ' + str(img_b.mean()))
+    #print('r is: ' + str(img_r.mean()))
+    #print('g is: ' + str(img_g.mean()))
+    #print('b is: ' + str(img_b.mean()))
+
+    img_y, img_u, img_v = Image_rgb2yuv(img_r, img_g, img_b)
+    mean_y = img_y.mean()
+    print(mean_y)
+
+    if(mean_y >= 200):
+        print('greater than 200')
+        for i in range(0,img_y.shape[0]):
+            for j in range(0,img_y.shape[1]):
+                newVal = img_y[i][j]
+                if(newVal > 127.5):
+                    newVal -= (newVal - 127.5) / 2 
+                else:
+                    newVal += (127.5 - newVal) / 2 
+
+                if(newVal > 255):
+                    newVal = 255 
+                elif(newVal < 0):
+                    newVal = 0 
+
+                img_y[i][j] = newVal
+    else:
+        print('less than 200')
+        for i in range(0,img_y.shape[0]):
+            for j in range(0,img_y.shape[1]):
+                newVal = img_y[i][j]
+                if(newVal < 127.5):
+                    newVal += (newVal - 127.5) / 2 
+                else:
+                    newVal -= (127.5 - newVal) / 2 
+
+                if(newVal > 255):
+                    newVal = 255 
+                elif(newVal < 0):
+                    newVal = 0 
+
+                img_y[i][j] = newVal
 
 
+    new_r, new_g, new_b = Image_yuv2rgb(img_y, img_u, img_v)
     #idea: bring all 3 channels to an average of 127 mean value
     #HOW?
     #figure out the ratio between desired (127) and actual
     #so if actual for red was 53, the ratio would be 127/53 = 2.396, which is what you multiply actual to get 127
     #you also want to take into account the actual value of each pixel, the further each pixel the larger the adjustment? or does that work?
     
-    redCo = 127.5 / img_r.mean()
-    print('redCo is: ' + str(redCo))
-
-
-    newimg_r = [pixel * redCo for pixel in img_r]
-
     print('-- Ending DREW')
 
-    return newimg_r, img_g, img_b
+    return new_r, new_g, new_b
 
 

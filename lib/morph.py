@@ -95,6 +95,6 @@ def morph_CE(im):
             if newPixel > 255:
             	img[i][j] = 255
             else:
-            	img[i][j] = newPixel 
+            	img[i][j] = newPixel
   
     return img
