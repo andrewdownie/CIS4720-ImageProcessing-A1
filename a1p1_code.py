@@ -39,7 +39,6 @@ def Image_To_RGB(img):
 #####
 def Image_rgb2yuv(img_r, img_g, img_b):
 # Calls rgb2yuv for every pixel in a color image 
-    print('Image_rgb2yuv: row: ' + str(len(img_r)) + ' cols: ' + str(len(img_r[0])))
     img_y = numpy.zeros((img_r.shape[0], img_r.shape[1]), 'uint16')
     img_u = numpy.zeros((img_r.shape[0], img_r.shape[1]), 'uint16')
     img_v = numpy.zeros((img_r.shape[0], img_r.shape[1]), 'uint16')
@@ -63,7 +62,6 @@ def Image_rgb2yuv(img_r, img_g, img_b):
 #####
 def Image_yuv2rgb(img_y, img_u, img_v):
 # Calls yuv2rgb for every pixel in a color image 
-    print('Image_yuv2rgb: row: ' + str(len(img_y)) + ' cols: ' + str(len(img_y[0])))
     img_r = numpy.zeros((img_y.shape[0], img_y.shape[1]))
     img_g = numpy.zeros((img_y.shape[0], img_y.shape[1]))
     img_b = numpy.zeros((img_y.shape[0], img_y.shape[1]))
@@ -175,48 +173,21 @@ def drew_CE(img_r, img_g, img_b):
     print('-- Starting DREW')
     
     img_y, img_u, img_v = Image_rgb2yuv(img_r, img_g, img_b)
-    mean_y = img_y.mean()
-    print(mean_y)
 
-    if(mean_y >= 200):
-        print('greater than 200')
-        for i in range(0,img_y.shape[0]):
-            for j in range(0,img_y.shape[1]):
-                newVal = img_y[i][j]
-                if(newVal > 127.5):
-                    newVal -= (newVal - 127.5) / 2 
-                else:
-                    newVal += (127.5 - newVal) / 2 
+    for i in range(0,img_y.shape[0]):
+        for j in range(0,img_y.shape[1]):
+            newVal = img_y[i][j]
+            newVal += (newVal - 127.5) / 2
 
-                if(newVal > 255):
-                    newVal = 255 
-                elif(newVal < 0):
-                    newVal = 0 
+            if(newVal > 255):
+                newVal = 255 
+            elif(newVal < 0):
+                newVal = 0 
 
-                img_y[i][j] = newVal
-    else:
-        print('less than 200')
-        for i in range(0,img_y.shape[0]):
-            for j in range(0,img_y.shape[1]):
-                newVal = img_y[i][j]
-                if(newVal < 127.5):
-                    newVal += (newVal - 127.5) / 2 
-                else:
-                    newVal -= (127.5 - newVal) / 2 
+            img_y[i][j] = newVal
 
-                if(newVal > 255):
-                    newVal = 255 
-                elif(newVal < 0):
-                    newVal = 0 
+    new_r, new_g, new_b = Image_yuv2rgb(img_y, img_u, img_v)
 
-                img_y[i][j] = newVal
-
-    #idea: bring all 3 channels to an average of 127 mean value
-    #HOW?
-    #figure out the ratio between desired (127) and actual
-    #so if actual for red was 53, the ratio would be 127/53 = 2.396, which is what you multiply actual to get 127
-    #you also want to take into account the actual value of each pixel, the further each pixel the larger the adjustment? or does that work?
-    
     print('-- Ending DREW')
 
     return new_r, new_g, new_b
@@ -226,8 +197,9 @@ def drew_CE(img_r, img_g, img_b):
 #####               histhyper
 #####
 def histhyper(img_r, img_g, img_b):
-    print("this is hist hyper")
+    print("-- Starting histhyper")
     img_y, img_u, img_v = Image_rgb2yuv(img_r, img_g, img_b)
     new_y = imhist_lib.histhyper(img_y)
     new_r, new_g, new_b = Image_yuv2rgb(new_y, img_u, img_v)
+    print("-- Ending histhyper")
     return new_r, new_b, new_g

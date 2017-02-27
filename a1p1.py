@@ -51,9 +51,6 @@ elif algo == 'histhyper':
 
 elif algo == 'drew_CE':
     new_r, new_g, new_b = a1p1_code.drew_CE(img_r, img_g, img_b)
-    #new_r, new_g, new_b = a1p1_code.DREW(new_r, new_g, new_b)
-    #new_r, new_g, new_b = a1p1_code.DREW(new_r, new_g, new_b)
-    #new_r, new_g, new_b = a1p1_code.DREW(new_r, new_g, new_b)
 
 else:
     print('A valid algo was not selected, exiting program...')
