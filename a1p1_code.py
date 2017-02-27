@@ -1,6 +1,7 @@
 #####
 #####               Imports
 #####
+import PIL
 import numpy as np
 import math
 import sys
@@ -167,13 +168,9 @@ def morph_toggleCE(img_r, img_g, img_b, nBlocks=20):
 #####
 #####               DREW
 #####
-def DREW(img_r, img_g, img_b):
+def drew_CE(img_r, img_g, img_b):
     print('-- Starting DREW')
     
-    #print('r is: ' + str(img_r.mean()))
-    #print('g is: ' + str(img_g.mean()))
-    #print('b is: ' + str(img_b.mean()))
-
     img_y, img_u, img_v = Image_rgb2yuv(img_r, img_g, img_b)
     mean_y = img_y.mean()
     print(mean_y)
@@ -211,8 +208,6 @@ def DREW(img_r, img_g, img_b):
 
                 img_y[i][j] = newVal
 
-
-    new_r, new_g, new_b = Image_yuv2rgb(img_y, img_u, img_v)
     #idea: bring all 3 channels to an average of 127 mean value
     #HOW?
     #figure out the ratio between desired (127) and actual

@@ -63,7 +63,7 @@ def morph_toggleCE(im):
             da = Id[i][j] - im[i][j]
             db = im[i][j] - Ie[i][j]
             
-            if  da < db:
+            if  da > db:
                 img[i][j] = Id[i][j]
             else:
                 img[i][j] = Ie[i][j]

@@ -46,11 +46,13 @@ elif algo == 'morph_CE':
     new_r, new_g, new_b = a1p1_code.morph_CE(img_r, img_g, img_b)
     new_r, new_g, new_b = a1p1_code.morph_CE(new_r, new_g, new_b)
 
-elif algo == 'DREW':
-    new_r, new_g, new_b = a1p1_code.DREW(img_r, img_g, img_b)
+elif algo == 'drew_CE':
+    new_r, new_g, new_b = a1p1_code.drew_CE(img_r, img_g, img_b)
     #new_r, new_g, new_b = a1p1_code.DREW(new_r, new_g, new_b)
     #new_r, new_g, new_b = a1p1_code.DREW(new_r, new_g, new_b)
     #new_r, new_g, new_b = a1p1_code.DREW(new_r, new_g, new_b)
+elif algo == 'test':
+   print("This is test") 
 
 else:
     print('No algo was selected, exiting program...')

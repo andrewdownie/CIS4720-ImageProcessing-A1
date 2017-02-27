@@ -2,7 +2,7 @@
 #####
 #####               Image-name, location and extensions
 #####
-imgName="lowcontrast2"
+imgName="lowcontrast1"
 relPath="images/" #relative to the script being run
 inExt=".jpg"
 outExt=".jpg"
@@ -12,7 +12,7 @@ outExt=".jpg"
 #####
 morph_toggleCE="morph_toggleCE"
 morph_CE="morph_CE"
-DREW="DREW"
+drew_CE="drew_CE"
 
 seperator=" - "
 
@@ -33,4 +33,4 @@ RunAlgo(){
 
 #RunAlgo "$morph_toggleCE"
 
-RunAlgo "$DREW"
+RunAlgo "$morph_toggleCE"
