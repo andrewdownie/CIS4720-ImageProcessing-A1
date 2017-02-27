@@ -2,7 +2,7 @@
 #####
 #####               Image-name, location and extensions
 #####
-imgName="lowcontrast1"
+imgName="lowcontrast2"
 relPath="images/" #relative to the script being run
 inExt=".jpg"
 outExt=".jpg"
@@ -11,6 +11,7 @@ outExt=".jpg"
 #####               The available algorithms to run
 #####
 morph_toggleCE="morph_toggleCE"
+histhyper="histhyper"
 morph_CE="morph_CE"
 drew_CE="drew_CE"
 
@@ -33,4 +34,4 @@ RunAlgo(){
 
 #RunAlgo "$morph_toggleCE"
 
-RunAlgo "$morph_CE"
+RunAlgo "$histhyper"

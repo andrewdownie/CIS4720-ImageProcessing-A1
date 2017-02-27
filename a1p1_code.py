@@ -9,6 +9,9 @@ import sys
 from morph import *
 import morph 
 
+from imhist_lib import *
+import imhist_lib
+
 
 #####
 #####               RGB to image
@@ -219,3 +222,12 @@ def drew_CE(img_r, img_g, img_b):
     return new_r, new_g, new_b
 
 
+#####
+#####               histhyper
+#####
+def histhyper(img_r, img_g, img_b):
+    print("this is hist hyper")
+    img_y, img_u, img_v = Image_rgb2yuv(img_r, img_g, img_b)
+    new_y = imhist_lib.histhyper(img_y)
+    new_r, new_g, new_b = Image_yuv2rgb(new_y, img_u, img_v)
+    return new_r, new_b, new_g
