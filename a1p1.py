@@ -55,7 +55,7 @@ elif algo == 'test':
    print("This is test") 
 
 else:
-    print('No algo was selected, exiting program...')
+    print('A valid algo was not selected, exiting program...')
     sys.exit()
 
 

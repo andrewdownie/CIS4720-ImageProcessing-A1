@@ -33,4 +33,4 @@ RunAlgo(){
 
 #RunAlgo "$morph_toggleCE"
 
-RunAlgo "$morph_toggleCE"
+RunAlgo "$morph_CE"
