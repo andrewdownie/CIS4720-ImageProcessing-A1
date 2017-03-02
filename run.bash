@@ -2,7 +2,7 @@
 #####
 #####               Image-name, location and extensions
 #####
-imgName="lowcontrast2"
+imgName="lowcontrast1"
 relPath="images/" #relative to the script being run
 inExt=".jpg"
 outExt=".jpg"
