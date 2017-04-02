@@ -2,6 +2,8 @@
 #####               Standard imports
 #####
 import sys
+from datetime import date, datetime
+import time 
 
 #####
 #####               Relative imports
@@ -15,8 +17,6 @@ import a1p1_code
 from imageIO import *
 import imageIO
 
-from datetime import date, datetime
-import time 
 
 
 
