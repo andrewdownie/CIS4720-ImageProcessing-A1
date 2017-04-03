@@ -4,7 +4,7 @@ import scipy
 import scipy.ndimage
 from numpy.ma.core import exp
 from scipy.constants.constants import pi
-import Image
+#import Image
 
 '''   
 Created on 21 nov. 2011
