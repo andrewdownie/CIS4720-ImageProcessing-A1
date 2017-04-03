@@ -23,16 +23,23 @@ IN_FILE="$relPath$imgName$inExt"
 #####               FUNCTION: RunAlgo, takes the algorithm you want to run as parameter one 
 #####
 RunAlgo(){
-    OUT_FILE="$relPath$imgName$seperator$1$outExt" 
-    python a1p1.py "$IN_FILE" "$OUT_FILE" "$1"
+    COMPARE_FILE="$relPath$imgName$seperator$1$outExt" 
+    python ssim.py "$IN_FILE" "$COMPARE_FILE" 
 }
 
 #####
 #####               Run the algorithms
 #####
+printf "morph toggle: "
 RunAlgo "$morph_toggleCE"
-RunAlgo "$histhyper"
+
+printf "morph: "
 RunAlgo "$morph_CE"
+
+printf "histhyper: "
+RunAlgo "$histhyper"
+
+printf "drew: " 
 RunAlgo "$drew_CE"
 
 printf "\nrun.bash has finished\n\n"

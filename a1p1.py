@@ -43,20 +43,24 @@ img_r, img_g, img_b = imageIO.imread_colour(inputImage)
 #####
 if algo == 'morph_toggleCE':
     new_r, new_g, new_b = a1p1_code.morph_toggleCE(img_r, img_g, img_b)
-
-    
-    #new_r, new_g, new_b = a1p1_code.morph_toggleCE(new_r, new_g, new_b)
-    #new_r, new_g, new_b = a1p1_code.morph_toggleCE(new_r, new_g, new_b)
+    new_r, new_g, new_b = a1p1_code.morph_toggleCE(new_r, new_g, new_b)
+    new_r, new_g, new_b = a1p1_code.morph_toggleCE(new_r, new_g, new_b)
 
 elif algo == 'morph_CE':
     new_r, new_g, new_b = a1p1_code.morph_CE(img_r, img_g, img_b)
-    #new_r, new_g, new_b = a1p1_code.morph_CE(new_r, new_g, new_b)
+    new_r, new_g, new_b = a1p1_code.morph_CE(new_r, new_g, new_b)
+    new_r, new_g, new_b = a1p1_code.morph_CE(new_r, new_g, new_b)
 
 elif algo == 'histhyper':
     new_r, new_g, new_b = a1p1_code.histhyper(img_r, img_g, img_b)
+    new_r, new_g, new_b = a1p1_code.histhyper(new_r, new_g, new_b)
+    new_r, new_g, new_b = a1p1_code.histhyper(new_r, new_g, new_b)
 
 elif algo == 'drew_CE':
     new_r, new_g, new_b = a1p1_code.drew_CE(img_r, img_g, img_b)
+    #new_r, new_g, new_b = a1p1_code.drew_CE(new_r, new_g, new_b)
+    #new_r, new_g, new_b = a1p1_code.drew_CE(new_r, new_g, new_b)
+    #new_r, new_g, new_b = a1p1_code.drew_CE(new_r, new_g, new_b)
 
 else:
     print('A valid algo was not selected, exiting program...')
