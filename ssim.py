@@ -7,8 +7,8 @@ thisDir = sys.path[0]
 sys.path.append(thisDir + '/lib')
 
 
-from a1p1_code import *
-import a1p1_code
+from a1_code import *
+import a1_code
 
 from imageIO import *
 import imageIO

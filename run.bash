@@ -24,7 +24,7 @@ IN_FILE="$relPath$imgName$inExt"
 #####
 RunAlgo(){
     OUT_FILE="$relPath$imgName$seperator$1$outExt" 
-    python a1p1.py "$IN_FILE" "$OUT_FILE" "$1"
+    python a1.py "$IN_FILE" "$OUT_FILE" "$1"
 }
 
 #####
